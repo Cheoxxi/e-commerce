@@ -43,27 +43,27 @@ import AddProduct from "./AddProduct";
 
 const items = [
   {
-    title: "Home",
+    title: "Trang chủ",
     url: "/",
     icon: Home,
   },
   {
-    title: "Inbox",
+    title: "Hộp thư",
     url: "#",
     icon: Inbox,
   },
   {
-    title: "Calendar",
+    title: "Lịch",
     url: "#",
     icon: Calendar,
   },
   {
-    title: "Search",
+    title: "Tìm kiếm",
     url: "#",
     icon: Search,
   },
   {
-    title: "Settings",
+    title: "Cài đặt",
     url: "#",
     icon: Settings,
   },
@@ -77,8 +77,8 @@ const AppSidebar = () => {
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
               <Link href="/">
-                <Image src="/logo.svg" alt="logo" width={20} height={20} />
-                <span>Lama Dev</span>
+                <Image src="/logo-systore.svg" alt="SyStore" width={20} height={20} />
+                <span>SyStore</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -87,7 +87,7 @@ const AppSidebar = () => {
       <SidebarSeparator />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Ứng dụng</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -98,7 +98,7 @@ const AppSidebar = () => {
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
-                  {item.title === "Inbox" && (
+                  {item.title === "Hộp thư" && (
                     <SidebarMenuBadge>24</SidebarMenuBadge>
                   )}
                 </SidebarMenuItem>
@@ -107,9 +107,9 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Products</SidebarGroupLabel>
+          <SidebarGroupLabel>Sản phẩm</SidebarGroupLabel>
           <SidebarGroupAction>
-            <Plus /> <span className="sr-only">Add Product</span>
+            <Plus /> <span className="sr-only">Thêm sản phẩm</span>
           </SidebarGroupAction>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -117,7 +117,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/products">
                     <Shirt />
-                    See All Products
+                    Xem tất cả sản phẩm
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -128,7 +128,7 @@ const AppSidebar = () => {
                       <SidebarMenuButton asChild>
                         <Link href="#">
                           <Plus />
-                          Add Product
+                          Thêm sản phẩm
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
@@ -143,7 +143,7 @@ const AppSidebar = () => {
                       <SidebarMenuButton asChild>
                         <Link href="#">
                           <Plus />
-                          Add Category
+                          Thêm danh mục
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
@@ -155,9 +155,9 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Users</SidebarGroupLabel>
+          <SidebarGroupLabel>Người dùng</SidebarGroupLabel>
           <SidebarGroupAction>
-            <Plus /> <span className="sr-only">Add User</span>
+            <Plus /> <span className="sr-only">Thêm người dùng</span>
           </SidebarGroupAction>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -165,7 +165,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <Link href="/users">
                     <User />
-                    See All Users
+                    Xem tất cả người dùng
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -176,7 +176,7 @@ const AppSidebar = () => {
                       <SidebarMenuButton asChild>
                         <Link href="#">
                           <Plus />
-                          Add User
+                          Thêm người dùng
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
@@ -188,17 +188,17 @@ const AppSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>Orders / Payments</SidebarGroupLabel>
+          <SidebarGroupLabel>Đơn hàng / Thanh toán</SidebarGroupLabel>
           <SidebarGroupAction>
-            <Plus /> <span className="sr-only">Add Order</span>
+            <Plus /> <span className="sr-only">Thêm đơn hàng</span>
           </SidebarGroupAction>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <Link href="/users">
+                  <Link href="/payments">
                     <ShoppingBasket />
-                    See All Transactions
+                    Xem tất cả giao dịch
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -209,7 +209,7 @@ const AppSidebar = () => {
                       <SidebarMenuButton asChild>
                         <Link href="#">
                           <Plus />
-                          Add Order
+                          Thêm đơn hàng
                         </Link>
                       </SidebarMenuButton>
                     </SheetTrigger>
@@ -227,13 +227,13 @@ const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> John Doe <ChevronUp className="ml-auto" />
+                  <User2 /> Minh Anh <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>Account</DropdownMenuItem>
-                <DropdownMenuItem>Setting</DropdownMenuItem>
-                <DropdownMenuItem>Sign out</DropdownMenuItem>
+                <DropdownMenuItem>Tài khoản</DropdownMenuItem>
+                <DropdownMenuItem>Cài đặt</DropdownMenuItem>
+                <DropdownMenuItem>Đăng xuất</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>

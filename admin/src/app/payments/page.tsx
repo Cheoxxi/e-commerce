@@ -2,7 +2,7 @@ import { Payment,columns } from "./columns";
 import { DataTable } from "./data-table";
 
 const getData = async (): Promise<Payment[]> => {
-  return [
+  const payments: Payment[] = [
     {
       id: "728ed521",
       amount: 134,
@@ -292,6 +292,11 @@ const getData = async (): Promise<Payment[]> => {
       email: "annecruz@gmail.com",
     },
   ];
+
+  return payments.map((payment) => ({
+    ...payment,
+    amount: payment.amount * 10000,
+  }));
 };
 
 const PaymentsPage = async () => {
@@ -299,7 +304,7 @@ const PaymentsPage = async () => {
   return (
     <div className="">
       <div className="mb-8 px-4 py-2 bg-secondary rounded-md">
-        <h1 className="font-semibold">All Payments</h1>
+        <h1 className="font-semibold">Tất cả giao dịch</h1>
       </div>
       <DataTable columns={columns} data={data}/>
     </div>

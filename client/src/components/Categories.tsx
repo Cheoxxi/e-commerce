@@ -12,42 +12,42 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const categories = [
   {
-    name: "All",
+    name: "Tất cả",
     icon: <ShoppingBasket className="w-4 h-4" />,
     slug: "all",
   },
   {
-    name: "T-shirts",
+    name: "Áo thun",
     icon: <Shirt className="w-4 h-4" />,
     slug: "t-shirts",
   },
   {
-    name: "Shoes",
+    name: "Giày",
     icon: <Footprints className="w-4 h-4" />,
     slug: "shoes",
   },
   {
-    name: "Accessories",
+    name: "Phụ kiện",
     icon: <Glasses className="w-4 h-4" />,
     slug: "accessories",
   },
   {
-    name: "Bags",
+    name: "Túi xách",
     icon: <Briefcase className="w-4 h-4" />,
     slug: "bags",
   },
   {
-    name: "Dresses",
+    name: "Đầm",
     icon: <Venus className="w-4 h-4" />,
     slug: "dresses",
   },
   {
-    name: "Jackets",
+    name: "Áo khoác",
     icon: <Shirt className="w-4 h-4" />,
     slug: "jackets",
   },
   {
-    name: "Gloves",
+    name: "Găng tay",
     icon: <Hand className="w-4 h-4" />,
     slug: "gloves",
   },

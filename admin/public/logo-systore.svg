@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Biểu tượng SyStore</title>
+  <rect width="64" height="64" rx="16" fill="#1f2937"/>
+  <path d="M35 17H24.5C19.8 17 17 19.8 17 23.5S19.8 30 24.5 30h7C36.2 30 39 32.8 39 36.5S36.2 43 31.5 43H17" fill="none" stroke="#fbbf24" stroke-width="5" stroke-linecap="round"/>
+  <path d="M40 20l7 10 7-10M47 30v13" fill="none" stroke="#f9fafb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

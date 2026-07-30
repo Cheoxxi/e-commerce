@@ -10,11 +10,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { formatCurrency } from "@/lib/utils";
 
 export type Product = {
   id: string | number;
@@ -48,7 +48,7 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "image",
-    header: "Image",
+    header: "Hình ảnh",
     cell: ({ row }) => {
       const product = row.original;
       return (
@@ -65,7 +65,7 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "Tên sản phẩm",
   },
   {
     accessorKey: "price",
@@ -75,15 +75,16 @@ export const columns: ColumnDef<Product>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Price
+          Giá
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
+    cell: ({ row }) => formatCurrency(row.original.price),
   },
   {
     accessorKey: "shortDescription",
-    header: "Description",
+    header: "Mô tả",
   },
   {
     id: "actions",
@@ -94,20 +95,20 @@ export const columns: ColumnDef<Product>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Mở menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Thao tác</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(product.id.toString())}
             >
-              Copy product ID
+              Sao chép mã sản phẩm
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/products/${product.id}`}>View customer</Link>
+              <Link href={`/products/${product.id}`}>Xem sản phẩm</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

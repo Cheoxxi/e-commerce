@@ -1,5 +1,3 @@
-import CardList from "@/components/CardList";
-import { Badge } from "@/components/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -27,15 +25,15 @@ const SingleUserPage = () => {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Dashboard</BreadcrumbLink>
+            <BreadcrumbLink href="/">Tổng quan</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/users">Users</BreadcrumbLink>
+            <BreadcrumbLink href="/users">Người dùng</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>John Doe</BreadcrumbPage>
+            <BreadcrumbPage>Nguyễn Minh Anh</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -45,7 +43,7 @@ const SingleUserPage = () => {
         <div className="w-full xl:w-1/3 space-y-6">
           {/* USER BADGES CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
-            <h1 className="text-xl font-semibold">User Badges</h1>
+            <h1 className="text-xl font-semibold">Huy hiệu người dùng</h1>
             <div className="flex gap-4 mt-4">
               <HoverCard>
                 <HoverCardTrigger>
@@ -55,9 +53,9 @@ const SingleUserPage = () => {
                   />
                 </HoverCardTrigger>
                 <HoverCardContent>
-                  <h1 className="font-bold mb-2">Verified User</h1>
+                  <h1 className="font-bold mb-2">Đã xác minh</h1>
                   <p className="text-sm text-muted-foreground">
-                    This user has been verified by the admin.
+                    Người dùng này đã được quản trị viên xác minh.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -69,10 +67,9 @@ const SingleUserPage = () => {
                   />
                 </HoverCardTrigger>
                 <HoverCardContent>
-                  <h1 className="font-bold mb-2">Admin</h1>
+                  <h1 className="font-bold mb-2">Quản trị viên</h1>
                   <p className="text-sm text-muted-foreground">
-                    Admin users have access to all features and can manage
-                    users.
+                    Có quyền truy cập đầy đủ và quản lý người dùng.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -84,9 +81,9 @@ const SingleUserPage = () => {
                   />
                 </HoverCardTrigger>
                 <HoverCardContent>
-                  <h1 className="font-bold mb-2">Awarded</h1>
+                  <h1 className="font-bold mb-2">Được ghi nhận</h1>
                   <p className="text-sm text-muted-foreground">
-                    This user has been awarded for their contributions.
+                    Được ghi nhận nhờ những đóng góp tích cực.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -98,9 +95,9 @@ const SingleUserPage = () => {
                   />
                 </HoverCardTrigger>
                 <HoverCardContent>
-                  <h1 className="font-bold mb-2">Popular</h1>
+                  <h1 className="font-bold mb-2">Nổi bật</h1>
                   <p className="text-sm text-muted-foreground">
-                    This user has been popular in the community.
+                    Người dùng có hoạt động nổi bật trong cộng đồng.
                   </p>
                 </HoverCardContent>
               </HoverCard>
@@ -111,24 +108,22 @@ const SingleUserPage = () => {
             <div className="flex items-center gap-2">
               <Avatar className="size-12">
                 <AvatarImage src="https://avatars.githubusercontent.com/u/1486366" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarFallback>MA</AvatarFallback>
               </Avatar>
-              <h1 className="text-xl font-semibold">John Doe</h1>
+              <h1 className="text-xl font-semibold">Nguyễn Minh Anh</h1>
             </div>
             <p className="text-sm text-muted-foreground">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel
-              voluptas distinctio ab ipsa commodi fugiat labore quos veritatis
-              cum corrupti sed repudiandae ipsum, harum recusandae ratione ipsam
-              in, quis quia.
+              Khách hàng thân thiết của SyStore, thường xuyên mua sắm các sản
+              phẩm thời trang thể thao và tham gia chương trình ưu đãi thành viên.
             </p>
           </div>
           {/* INFORMATION CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
             <div className="flex items-center justify-between">
-              <h1 className="text-xl font-semibold">User Information</h1>
+              <h1 className="text-xl font-semibold">Thông tin người dùng</h1>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button>Edit User</Button>
+                  <Button>Chỉnh sửa</Button>
                 </SheetTrigger>
                 <EditUser />
               </Sheet>
@@ -136,33 +131,33 @@ const SingleUserPage = () => {
             <div className="space-y-4 mt-4">
               <div className="flex flex-col gap-2 mb-8">
                 <p className="text-sm text-muted-foreground">
-                  Profile completion
+                  Mức độ hoàn thiện hồ sơ
                 </p>
                 <Progress value={66} />
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">Full name:</span>
-                <span>John Doe</span>
+                <span className="font-bold">Họ và tên:</span>
+                <span>Nguyễn Minh Anh</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-bold">Email:</span>
-                <span>john.doe@gmail.com</span>
+                <span>minhanh@example.com</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">Phone:</span>
-                <span>+1 234 5678</span>
+                <span className="font-bold">Số điện thoại:</span>
+                <span>0912345678</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">Address:</span>
-                <span>123 Main St</span>
+                <span className="font-bold">Địa chỉ:</span>
+                <span>123 Nguyễn Trãi, Phường Bến Thành</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">City:</span>
-                <span>New York</span>
+                <span className="font-bold">Tỉnh / Thành phố:</span>
+                <span>TP. Hồ Chí Minh</span>
               </div>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
-              Joined on 2025.01.01
+              Tham gia ngày 01/01/2025
             </p>
           </div>
         </div>
@@ -171,7 +166,7 @@ const SingleUserPage = () => {
           
           {/* CHART CONTAINER */}
           <div className="bg-primary-foreground p-4 rounded-lg">
-            <h1 className="text-xl font-semibold">User Activity</h1>
+            <h1 className="text-xl font-semibold">Hoạt động người dùng</h1>
             <AppLineChart />
           </div>
         </div>

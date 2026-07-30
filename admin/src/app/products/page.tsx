@@ -2,14 +2,14 @@ import { Product, columns } from "./columns";
 import { DataTable } from "./data-table";
 
 const getData = async (): Promise<Product[]> => {
-  return [
+  const products: Product[] = [
     {
       id: 1,
-      name: "Adidas CoreFit T-Shirt",
+      name: "Áo thun Adidas CoreFit",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Chất vải mềm, co giãn nhẹ và thoáng mát cho ngày năng động.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo thun phom gọn, thoáng mát và dễ phối cho trang phục hằng ngày.",
       price: 39.9,
       sizes: ["s", "m", "l", "xl", "xxl"],
       colors: ["gray", "purple", "green"],
@@ -21,11 +21,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 2,
-      name: "Puma Ultra Warm Zip",
+      name: "Áo khoác Puma Ultra Warm Zip",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Lớp giữ ấm nhẹ cùng khóa kéo tiện dụng cho thời tiết se lạnh.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo khoác giữ ấm vừa đủ và phù hợp cho nhiều hoạt động thường ngày.",
       price: 59.9,
       sizes: ["s", "m", "l", "xl"],
       colors: ["gray", "green"],
@@ -33,11 +33,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 3,
-      name: "Nike Air Essentials Pullover",
+      name: "Áo nỉ Nike Air Essentials",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Phom rộng vừa phải, bề mặt êm và thoải mái suốt ngày dài.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo nỉ có phom hiện đại và bề mặt mềm mại cho ngày se lạnh.",
       price: 69.9,
       sizes: ["s", "m", "l"],
       colors: ["green", "blue", "black"],
@@ -49,11 +49,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 4,
-      name: "Nike Dri Flex T-Shirt",
+      name: "Áo thun Nike Dri-FIT",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Khả năng thấm hút tốt, phù hợp tập luyện và mặc hằng ngày.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo thun hỗ trợ thoát ẩm nhanh và giúp cử động tự nhiên.",
       price: 29.9,
       sizes: ["s", "m", "l"],
       colors: ["white", "pink"],
@@ -61,11 +61,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 5,
-      name: "Under Armour StormFleece",
+      name: "Áo nỉ Under Armour StormFleece",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Bề mặt ấm áp, nhẹ và linh hoạt trong mọi hoạt động.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo nỉ ấm vừa đủ, phù hợp mặc riêng hoặc phối nhiều lớp.",
       price: 49.9,
       sizes: ["s", "m", "l"],
       colors: ["red", "orange", "black"],
@@ -77,11 +77,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 6,
-      name: "Nike Air Max 270",
+      name: "Giày Nike Air Max 270",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Đệm khí êm ái cùng dáng giày nổi bật cho từng bước chân.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Giày có phần đệm khí lớn và thân giày ôm chân, dễ phối trang phục.",
       price: 59.9,
       sizes: ["40", "42", "43", "44"],
       colors: ["gray", "white"],
@@ -89,11 +89,11 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 7,
-      name: "Nike Ultraboost Pulse ",
+      name: "Giày Nike Ultraboost Pulse",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Thiết kế thể thao nhẹ, hỗ trợ tốt cho nhịp di chuyển hằng ngày.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Giày có lớp đệm đàn hồi và thân thoáng khí cho cảm giác dễ chịu.",
       price: 69.9,
       sizes: ["40", "42", "43"],
       colors: ["gray", "pink"],
@@ -101,17 +101,22 @@ const getData = async (): Promise<Product[]> => {
     },
     {
       id: 8,
-      name: "Levi’s Classic Denim",
+      name: "Áo khoác denim Levi’s Classic",
       shortDescription:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Chất denim bền đẹp với phom cổ điển không lỗi thời.",
       description:
-        "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+        "Áo khoác có phom vừa vặn, bền chắc và dễ phối nhiều phong cách.",
       price: 59.9,
       sizes: ["s", "m", "l"],
       colors: ["blue", "green"],
       images: { blue: "/products/8b.png", green: "/products/8gr.png" },
     },
   ];
+
+  return products.map((product) => ({
+    ...product,
+    price: product.price * 10000,
+  }));
 };
 
 const PaymentsPage = async () => {
@@ -119,7 +124,7 @@ const PaymentsPage = async () => {
   return (
     <div className="">
       <div className="mb-8 px-4 py-2 bg-secondary rounded-md">
-        <h1 className="font-semibold">All Products</h1>
+        <h1 className="font-semibold">Tất cả sản phẩm</h1>
       </div>
       <DataTable columns={columns} data={data} />
     </div>

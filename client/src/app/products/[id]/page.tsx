@@ -1,16 +1,17 @@
 import ProductInteraction from "@/components/ProductInteraction";
 import { ProductType } from "@/types";
 import Image from "next/image";
+import { formatCurrency } from "@/lib/format";
 
 // TEMPORARY
 const product: ProductType = {
   id: 1,
-  name: "Adidas CoreFit T-Shirt",
+  name: "Áo thun Adidas CoreFit",
   shortDescription:
-    "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+    "Chất vải mềm, co giãn nhẹ và thoáng mát cho ngày năng động.",
   description:
-    "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-  price: 59.9,
+    "Áo thun Adidas CoreFit có phom dáng gọn gàng, chất vải mềm và thoáng. Thiết kế dễ phối cùng quần jeans hoặc trang phục thể thao hằng ngày.",
+  price: 399000,
   sizes: ["xs", "s", "m", "l", "xl"],
   colors: ["gray", "purple", "green"],
   images: {
@@ -20,24 +21,18 @@ const product: ProductType = {
   },
 };
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
+export const generateMetadata = async () => {
   // TODO:get the product from db
   // TEMPORARY
   return {
     title: product.name,
-    describe: product.description,
+    description: product.description,
   };
 };
 
 const ProductPage = async ({
-  params,
   searchParams,
 }: {
-  params: Promise<{ id: string }>;
   searchParams: Promise<{ color: string; size: string }>;
 }) => {
   const { size, color } = await searchParams;
@@ -59,7 +54,9 @@ const ProductPage = async ({
       <div className="w-full lg:w-7/12 flex flex-col gap-4">
         <h1 className="text-2xl font-medium">{product.name}</h1>
         <p className="text-gray-500">{product.description}</p>
-        <h2 className="text-2xl font-semibold">${product.price.toFixed(2)}</h2>
+        <h2 className="text-2xl font-semibold">
+          {formatCurrency(product.price)}
+        </h2>
         <ProductInteraction
           product={product}
           selectedSize={selectedSize}
@@ -69,33 +66,36 @@ const ProductPage = async ({
         <div className="flex items-center gap-2 mt-4">
           <Image
             src="/klarna.png"
-            alt="klarna"
+            alt="Klarna"
             width={50}
             height={25}
             className="rounded-md"
           />
           <Image
             src="/cards.png"
-            alt="cards"
+            alt="Các loại thẻ thanh toán"
             width={50}
             height={25}
             className="rounded-md"
           />
           <Image
             src="/stripe.png"
-            alt="stripe"
+            alt="Stripe"
             width={50}
             height={25}
             className="rounded-md"
           />
         </div>
         <p className="text-gray-500 text-xs">
-          By clicking Pay Now, you agree to our{" "}
-          <span className="underline hover:text-black">Terms & Conditions</span>{" "}
-          and <span className="underline hover:text-black">Privacy Policy</span>
-          . You authorize us to charge your selected payment method for the
-          total amount shown. All sales are subject to our return and{" "}
-          <span className="underline hover:text-black">Refund Policies</span>.
+          Khi chọn Thanh toán ngay, bạn đồng ý với{" "}
+          <span className="underline hover:text-black">Điều khoản dịch vụ</span>{" "}
+          và <span className="underline hover:text-black">Chính sách bảo mật</span>.
+          Bạn cho phép SyStore thu đúng tổng số tiền hiển thị qua phương thức đã
+          chọn. Mọi đơn hàng tuân theo{" "}
+          <span className="underline hover:text-black">
+            chính sách đổi trả và hoàn tiền
+          </span>
+          .
         </p>
       </div>
     </div>

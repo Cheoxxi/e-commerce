@@ -22,7 +22,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Name is Required!" }),
+  name: z.string().min(1, { message: "Vui lòng nhập tên danh mục." }),
 });
 
 const AddCategory = () => {
@@ -32,7 +32,7 @@ const AddCategory = () => {
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Add Category</SheetTitle>
+        <SheetTitle className="mb-4">Thêm danh mục</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -41,16 +41,16 @@ const AddCategory = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>Tên danh mục</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
-                    <FormDescription>Enter category name.</FormDescription>
+                    <FormDescription>Nhập tên danh mục mới.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Thêm danh mục</Button>
             </form>
           </Form>
         </SheetDescription>

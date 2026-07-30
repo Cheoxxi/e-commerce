@@ -22,32 +22,32 @@ export type CartItemType = ProductType & {
 export type CartItemsType = CartItemType[];
 
 export const shippingFormSchema = z.object({
-  name: z.string().min(1, "Name is required!"),
-  email: z.email().min(1, "Email is required!"),
+  name: z.string().min(1, "Vui lòng nhập họ và tên."),
+  email: z.email("Email không hợp lệ.").min(1, "Vui lòng nhập email."),
   phone: z
     .string()
-    .min(7, "Phone number must be between 7 and 10 digits!")
-    .max(10, "Phone number must be between 7 and 10 digits!")
-    .regex(/^\d+$/, "Phone number must contain only numbers!"),
-  address: z.string().min(1, "Address is required!"),
-  city: z.string().min(1, "City is required!"),
+    .min(9, "Số điện thoại phải có từ 9 đến 10 chữ số.")
+    .max(10, "Số điện thoại phải có từ 9 đến 10 chữ số.")
+    .regex(/^\d+$/, "Số điện thoại chỉ được chứa chữ số."),
+  address: z.string().min(1, "Vui lòng nhập địa chỉ."),
+  city: z.string().min(1, "Vui lòng nhập tỉnh hoặc thành phố."),
 });
 
 export type ShippingFormInputs = z.infer<typeof shippingFormSchema>;
 
 export const paymentFormSchema = z.object({
-  cardHolder: z.string().min(1, "Card holder is required!"),
+  cardHolder: z.string().min(1, "Vui lòng nhập tên chủ thẻ."),
   cardNumber: z
     .string()
-    .min(16, "Card Number is required!")
-    .max(16, "Card Number is required!"),
+    .min(16, "Số thẻ phải có 16 chữ số.")
+    .max(16, "Số thẻ phải có 16 chữ số."),
   expirationDate: z
     .string()
     .regex(
       /^(0[1-9]|1[0-2])\/\d{2}$/,
-      "Expiration date must be in MM/YY format!"
+      "Ngày hết hạn phải có định dạng MM/YY."
     ),
-  cvv: z.string().min(3, "CVV is required!").max(3, "CVV is required!"),
+  cvv: z.string().min(3, "CVV phải có 3 chữ số.").max(3, "CVV phải có 3 chữ số."),
 });
 
 export type PaymentFormInputs = z.infer<typeof paymentFormSchema>;

@@ -19,21 +19,14 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
   fullName: z
     .string()
-    .min(2, { message: "Full name must be at least 2 characters!" })
+    .min(2, { message: "Họ và tên phải có ít nhất 2 ký tự." })
     .max(50),
-  email: z.string().email({ message: "Invalid email address!" }),
+  email: z.string().email({ message: "Email không hợp lệ." }),
   phone: z.string().min(10).max(15),
   address: z.string().min(2),
   city: z.string().min(2),
@@ -46,7 +39,7 @@ const AddUser = () => {
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Add User</SheetTitle>
+        <SheetTitle className="mb-4">Thêm người dùng</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -55,12 +48,12 @@ const AddUser = () => {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Họ và tên</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user full name.
+                      Nhập họ và tên của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -76,7 +69,7 @@ const AddUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your email.
+                      Chỉ quản trị viên có thể xem email này.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -87,12 +80,12 @@ const AddUser = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>Số điện thoại</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your phone number (optional)
+                      Chỉ quản trị viên có thể xem số điện thoại này.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -103,12 +96,12 @@ const AddUser = () => {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Address</FormLabel>
+                    <FormLabel>Địa chỉ</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user address (optional)
+                      Nhập địa chỉ của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -119,18 +112,18 @@ const AddUser = () => {
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>City</FormLabel>
+                    <FormLabel>Tỉnh / Thành phố</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user city (optional)
+                      Nhập tỉnh hoặc thành phố của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Thêm người dùng</Button>
             </form>
           </Form>
         </SheetDescription>

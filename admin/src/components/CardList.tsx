@@ -1,16 +1,17 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { formatCurrency } from "@/lib/utils";
 
 const popularProducts = [
   {
     id: 1,
-    name: "Adidas CoreFit T-Shirt",
+    name: "Áo thun Adidas CoreFit",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Chất vải mềm, co giãn nhẹ và thoáng mát.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 39.9,
+      "Áo thun phom gọn, thoáng mát và dễ phối cho trang phục hằng ngày.",
+    price: 399000,
     sizes: ["s", "m", "l", "xl", "xxl"],
     colors: ["gray", "purple", "green"],
     images: {
@@ -21,24 +22,24 @@ const popularProducts = [
   },
   {
     id: 2,
-    name: "Puma Ultra Warm Zip",
+    name: "Áo khoác Puma Ultra Warm Zip",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Lớp giữ ấm nhẹ cùng khóa kéo tiện dụng.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 59.9,
+      "Áo khoác giữ ấm vừa đủ và phù hợp cho nhiều hoạt động thường ngày.",
+    price: 599000,
     sizes: ["s", "m", "l", "xl"],
     colors: ["gray", "green"],
     images: { gray: "/products/2g.png", green: "/products/2gr.png" },
   },
   {
     id: 3,
-    name: "Nike Air Essentials Pullover",
+    name: "Áo nỉ Nike Air Essentials",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Phom rộng vừa phải, êm và thoải mái.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 69.9,
+      "Áo nỉ có phom hiện đại và bề mặt mềm mại cho ngày se lạnh.",
+    price: 699000,
     sizes: ["s", "m", "l"],
     colors: ["green", "blue", "black"],
     images: {
@@ -49,24 +50,24 @@ const popularProducts = [
   },
   {
     id: 4,
-    name: "Nike Dri Flex T-Shirt",
+    name: "Áo thun Nike Dri-FIT",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Khả năng thấm hút tốt, phù hợp tập luyện.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 29.9,
+      "Áo thun hỗ trợ thoát ẩm nhanh và giúp cử động tự nhiên.",
+    price: 299000,
     sizes: ["s", "m", "l"],
     colors: ["white", "pink"],
     images: { white: "/products/4w.png", pink: "/products/4p.png" },
   },
   {
     id: 5,
-    name: "Under Armour StormFleece",
+    name: "Áo nỉ Under Armour StormFleece",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Bề mặt ấm áp, nhẹ và linh hoạt.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 49.9,
+      "Áo nỉ ấm vừa đủ, phù hợp mặc riêng hoặc phối nhiều lớp.",
+    price: 499000,
     sizes: ["s", "m", "l"],
     colors: ["red", "orange", "black"],
     images: {
@@ -80,43 +81,43 @@ const popularProducts = [
 const latestTransactions = [
   {
     id: 1,
-    title: "Order Payment",
-    badge: "John Doe",
+    title: "Thanh toán đơn hàng",
+    badge: "Nguyễn Minh Anh",
     image:
       "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=800",
-    count: 1400,
+    count: 1400000,
   },
   {
     id: 2,
-    title: "Order Payment",
-    badge: "Jane Smith",
+    title: "Thanh toán đơn hàng",
+    badge: "Trần Khánh Linh",
     image:
       "https://images.pexels.com/photos/4969918/pexels-photo-4969918.jpeg?auto=compress&cs=tinysrgb&w=800",
-    count: 2100,
+    count: 2100000,
   },
   {
     id: 3,
-    title: "Order Payment",
-    badge: "Michael Johnson",
+    title: "Thanh toán đơn hàng",
+    badge: "Lê Hoàng Nam",
     image:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=800",
-    count: 1300,
+    count: 1300000,
   },
   {
     id: 4,
-    title: "Order Payment",
-    badge: "Lily Adams",
+    title: "Thanh toán đơn hàng",
+    badge: "Phạm Ngọc Mai",
     image:
       "https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&w=800",
-    count: 2500,
+    count: 2500000,
   },
   {
     id: 5,
-    title: "Order Payment",
-    badge: "Sam Brown",
+    title: "Thanh toán đơn hàng",
+    badge: "Vũ Đức Huy",
     image:
       "https://images.pexels.com/photos/1680175/pexels-photo-1680175.jpeg?auto=compress&cs=tinysrgb&w=800",
-    count: 1400,
+    count: 1400000,
   },
 ];
 
@@ -125,7 +126,7 @@ const CardList = ({ title }: { title: string }) => {
     <div className="">
       <h1 className="text-lg font-medium mb-6">{title}</h1>
       <div className="flex flex-col gap-2">
-        {title === "Popular Products"
+        {title === "Sản phẩm phổ biến"
           ? popularProducts.map((item) => (
               <Card
                 key={item.id}
@@ -144,7 +145,9 @@ const CardList = ({ title }: { title: string }) => {
                     {item.name}
                   </CardTitle>
                 </CardContent>
-                <CardFooter className="p-0">${item.price}K</CardFooter>
+                <CardFooter className="p-0">
+                  {formatCurrency(item.price)}
+                </CardFooter>
               </Card>
             ))
           : latestTransactions.map((item) => (
@@ -166,7 +169,9 @@ const CardList = ({ title }: { title: string }) => {
                   </CardTitle>
                   <Badge variant="secondary">{item.badge}</Badge>
                 </CardContent>
-                <CardFooter className="p-0">${item.count /1000}K</CardFooter>
+                <CardFooter className="p-0">
+                  {formatCurrency(item.count)}
+                </CardFooter>
               </Card>
             ))}
       </div>

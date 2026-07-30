@@ -8,12 +8,12 @@ import Filter from "./Filter";
 const products: ProductsType = [
   {
     id: 1,
-    name: "Adidas CoreFit T-Shirt",
+    name: "Áo thun Adidas CoreFit",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Chất vải mềm, co giãn nhẹ và thoáng mát cho ngày năng động.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 39.9,
+      "Áo thun Adidas CoreFit có phom dáng gọn gàng, chất vải mềm và thoáng. Thiết kế dễ phối cùng quần jeans hoặc trang phục thể thao hằng ngày.",
+    price: 399000,
     sizes: ["s", "m", "l", "xl", "xxl"],
     colors: ["gray", "purple", "green"],
     images: {
@@ -24,24 +24,24 @@ const products: ProductsType = [
   },
   {
     id: 2,
-    name: "Puma Ultra Warm Zip",
+    name: "Áo khoác Puma Ultra Warm Zip",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Lớp giữ ấm nhẹ cùng khóa kéo tiện dụng cho thời tiết se lạnh.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 59.9,
+      "Áo khoác Puma Ultra Warm Zip giữ ấm vừa đủ mà không gây nặng nề. Phom áo linh hoạt phù hợp khi đi học, đi làm hoặc vận động ngoài trời.",
+    price: 599000,
     sizes: ["s", "m", "l", "xl"],
     colors: ["gray", "green"],
     images: { gray: "/products/2g.png", green: "/products/2gr.png" },
   },
   {
     id: 3,
-    name: "Nike Air Essentials Pullover",
+    name: "Áo nỉ Nike Air Essentials",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Phom rộng vừa phải, bề mặt êm và thoải mái suốt ngày dài.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 69.9,
+      "Áo nỉ Nike Air Essentials mang lại cảm giác êm ái với phom dáng hiện đại. Chi tiết bo gọn giúp giữ phom và dễ kết hợp nhiều phong cách.",
+    price: 699000,
     sizes: ["s", "m", "l"],
     colors: ["green", "blue", "black"],
     images: {
@@ -52,24 +52,24 @@ const products: ProductsType = [
   },
   {
     id: 4,
-    name: "Nike Dri Flex T-Shirt",
+    name: "Áo thun Nike Dri-FIT",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Khả năng thấm hút tốt, phù hợp tập luyện và mặc hằng ngày.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 29.9,
+      "Áo thun Nike Dri-FIT hỗ trợ thoát ẩm nhanh và giữ cảm giác khô thoáng. Đường may gọn giúp bạn cử động tự nhiên khi tập luyện.",
+    price: 299000,
     sizes: ["s", "m", "l"],
     colors: ["white", "pink"],
     images: { white: "/products/4w.png", pink: "/products/4p.png" },
   },
   {
     id: 5,
-    name: "Under Armour StormFleece",
+    name: "Áo nỉ Under Armour StormFleece",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Bề mặt ấm áp, nhẹ và linh hoạt trong mọi hoạt động thường ngày.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 49.9,
+      "Under Armour StormFleece kết hợp lớp nỉ ấm với thiết kế linh hoạt. Sản phẩm phù hợp mặc riêng hoặc phối lớp khi nhiệt độ xuống thấp.",
+    price: 499000,
     sizes: ["s", "m", "l"],
     colors: ["red", "orange", "black"],
     images: {
@@ -80,47 +80,53 @@ const products: ProductsType = [
   },
   {
     id: 6,
-    name: "Nike Air Max 270",
+    name: "Giày Nike Air Max 270",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Đệm khí êm ái cùng dáng giày nổi bật cho từng bước chân.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 59.9,
+      "Nike Air Max 270 có phần đệm khí lớn giúp tăng độ êm khi di chuyển. Thân giày ôm chân và phối màu hiện đại tạo điểm nhấn cho trang phục.",
+    price: 599000,
     sizes: ["40", "42", "43", "44"],
     colors: ["gray", "white"],
     images: { gray: "/products/6g.png", white: "/products/6w.png" },
   },
   {
     id: 7,
-    name: "Nike Ultraboost Pulse ",
+    name: "Giày Nike Ultraboost Pulse",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Thiết kế thể thao nhẹ, hỗ trợ tốt cho nhịp di chuyển hằng ngày.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 69.9,
+      "Nike Ultraboost Pulse có lớp đệm đàn hồi và thân giày thoáng khí. Kiểu dáng gọn giúp bạn dễ dàng chuyển từ tập luyện sang dạo phố.",
+    price: 699000,
     sizes: ["40", "42", "43"],
     colors: ["gray", "pink"],
     images: { gray: "/products/7g.png", pink: "/products/7p.png" },
   },
   {
     id: 8,
-    name: "Levi’s Classic Denim",
+    name: "Áo khoác denim Levi’s Classic",
     shortDescription:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
+      "Chất denim bền đẹp với phom cổ điển không lỗi thời.",
     description:
-      "Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit. Lorem ipsum dolor sit amet consect adipisicing elit lorem ipsum dolor sit.",
-    price: 59.9,
+      "Áo khoác denim Levi’s Classic có phom vừa vặn và chất liệu bền chắc. Thiết kế cổ điển dễ phối cùng áo thun, sơ mi hoặc trang phục nhiều lớp.",
+    price: 599000,
     sizes: ["s", "m", "l"],
     colors: ["blue", "green"],
     images: { blue: "/products/8b.png", green: "/products/8gr.png" },
   },
 ];
 
-const ProductList = ({ category,params }: { category: string, params:"homepage" | "products" }) => {
+const ProductList = ({
+  category,
+  params,
+}: {
+  category: string;
+  params: "homepage" | "products";
+}) => {
   return (
     <div className="w-full">
       <Categories />
-      {params === "products" && <Filter/>}
+      {params === "products" && <Filter />}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
@@ -130,7 +136,7 @@ const ProductList = ({ category,params }: { category: string, params:"homepage" 
         href={category ? `/products/?category=${category}` : "/products"}
         className="flex justify-end mt-4 underline text-sm text-gray-500"
       >
-        View all products
+        Xem tất cả sản phẩm
       </Link>
     </div>
   );

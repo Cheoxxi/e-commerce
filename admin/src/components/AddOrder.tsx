@@ -29,8 +29,8 @@ import {
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
-  amount: z.number().min(1, { message: "Amount must be at least 1!" }),
-  userId: z.string().min(1, { message: "User Id is required!" }),
+  amount: z.number().min(1, { message: "Số tiền phải lớn hơn 0." }),
+  userId: z.string().min(1, { message: "Vui lòng nhập mã người dùng." }),
   status: z.enum(["pending", "processing", "success", "failed"]),
 });
 
@@ -41,7 +41,7 @@ const AddOrder = () => {
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Add Order</SheetTitle>
+        <SheetTitle className="mb-4">Thêm đơn hàng</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -50,12 +50,12 @@ const AddOrder = () => {
                 name="amount"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Amount</FormLabel>
+                    <FormLabel>Số tiền (VNĐ)</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter the amount of the order.
+                      Nhập tổng giá trị đơn hàng bằng VNĐ.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -66,11 +66,11 @@ const AddOrder = () => {
                 name="userId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>User ID</FormLabel>
+                    <FormLabel>Mã người dùng</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
-                    <FormDescription>Enter the User ID.</FormDescription>
+                    <FormDescription>Nhập mã của người đặt hàng.</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
@@ -80,28 +80,31 @@ const AddOrder = () => {
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel>Trạng thái</FormLabel>
                     <FormControl>
-                      <Select>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a status" />
+                          <SelectValue placeholder="Chọn trạng thái" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="pending">Pending</SelectItem>
-                          <SelectItem value="processing">Processing</SelectItem>
-                          <SelectItem value="success">Success</SelectItem>
-                          <SelectItem value="failed">Failed</SelectItem>
+                          <SelectItem value="pending">Chờ xử lý</SelectItem>
+                          <SelectItem value="processing">Đang xử lý</SelectItem>
+                          <SelectItem value="success">Thành công</SelectItem>
+                          <SelectItem value="failed">Thất bại</SelectItem>
                         </SelectContent>
                       </Select>
                     </FormControl>
                     <FormDescription>
-                      Enter the status of the order.
+                      Chọn trạng thái hiện tại của đơn hàng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Thêm đơn hàng</Button>
             </form>
           </Form>
         </SheetDescription>

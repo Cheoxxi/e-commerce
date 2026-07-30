@@ -19,21 +19,14 @@ import {
   FormMessage,
 } from "./ui/form";
 import { Input } from "./ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "./ui/button";
 
 const formSchema = z.object({
   fullName: z
     .string()
-    .min(2, { message: "Full name must be at least 2 characters!" })
+    .min(2, { message: "Họ và tên phải có ít nhất 2 ký tự." })
     .max(50),
-  email: z.string().email({ message: "Invalid email address!" }),
+  email: z.string().email({ message: "Email không hợp lệ." }),
   phone: z.string().min(10).max(15),
   address: z.string().min(2),
   city: z.string().min(2),
@@ -43,17 +36,17 @@ const EditUser = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "John Doe",
-      email: "john.doe@gmail.com",
-      phone: "+1 234 5678",
-      address: "123 Main St",
-      city: "New York",
+      fullName: "Nguyễn Minh Anh",
+      email: "minhanh@example.com",
+      phone: "0912345678",
+      address: "123 Nguyễn Trãi, Phường Bến Thành",
+      city: "TP. Hồ Chí Minh",
     },
   });
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="mb-4">Edit User</SheetTitle>
+        <SheetTitle className="mb-4">Chỉnh sửa người dùng</SheetTitle>
         <SheetDescription asChild>
           <Form {...form}>
             <form className="space-y-8">
@@ -62,12 +55,12 @@ const EditUser = () => {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel>Họ và tên</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user full name.
+                      Nhập họ và tên của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -83,7 +76,7 @@ const EditUser = () => {
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your email.
+                      Chỉ quản trị viên có thể xem email này.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -94,12 +87,12 @@ const EditUser = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>Số điện thoại</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Only admin can see your phone number (optional)
+                      Chỉ quản trị viên có thể xem số điện thoại này.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -110,12 +103,12 @@ const EditUser = () => {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Address</FormLabel>
+                    <FormLabel>Địa chỉ</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user address (optional)
+                      Nhập địa chỉ của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -126,18 +119,18 @@ const EditUser = () => {
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>City</FormLabel>
+                    <FormLabel>Tỉnh / Thành phố</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
                     <FormDescription>
-                      Enter user city (optional)
+                      Nhập tỉnh hoặc thành phố của người dùng.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Lưu thay đổi</Button>
             </form>
           </Form>
         </SheetDescription>

@@ -17,28 +17,28 @@ import {
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Máy tính",
     color: "var(--chart-2)",
   },
   mobile: {
-    label: "Mobile",
+    label: "Di động",
     color: "var(--chart-1)",
   },
 } satisfies ChartConfig;
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Tháng 1", desktop: 186, mobile: 80 },
+  { month: "Tháng 2", desktop: 305, mobile: 200 },
+  { month: "Tháng 3", desktop: 237, mobile: 120 },
+  { month: "Tháng 4", desktop: 73, mobile: 190 },
+  { month: "Tháng 5", desktop: 209, mobile: 130 },
+  { month: "Tháng 6", desktop: 214, mobile: 140 },
 ];
 
 const AppAreaChart = () => {
   return (
     <div className="">
-      <h1 className="text-lg font-medium mb-6">Total Visitors</h1>
+      <h1 className="text-lg font-medium mb-6">Tổng lượt truy cập</h1>
       <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
         <AreaChart accessibilityLayer data={chartData}>
           <CartesianGrid vertical={false} />
@@ -47,7 +47,7 @@ const AppAreaChart = () => {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
-            tickFormatter={(value) => value.slice(0, 3)}
+            tickFormatter={(value) => value.replace("Tháng ", "T")}
           />
           <YAxis tickLine={false} tickMargin={10} axisLine={false} />
           <ChartTooltip content={<ChartTooltipContent />} />

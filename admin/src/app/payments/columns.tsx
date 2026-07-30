@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import Link from "next/link";
+import { formatCurrency } from "@/lib/utils";
 
 export type Payment = {
   id: string;
@@ -45,7 +46,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "fullName",
-    header: "User",
+    header: "Người dùng",
   },
   {
     accessorKey: "email",
@@ -63,7 +64,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: "Trạng thái",
     cell: ({ row }) => {
       const status = row.getValue("status");
 
@@ -76,20 +77,23 @@ export const columns: ColumnDef<Payment>[] = [
             status === "failed" && "bg-red-500/40"
           )}
         >
-          {status as string}
+          {status === "pending"
+            ? "Chờ xử lý"
+            : status === "processing"
+              ? "Đang xử lý"
+              : status === "success"
+                ? "Thành công"
+                : "Thất bại"}
         </div>
       );
     },
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: () => <div className="text-right">Số tiền</div>,
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
+      const formatted = formatCurrency(amount);
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
@@ -103,22 +107,22 @@ export const columns: ColumnDef<Payment>[] = [
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Mở menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuLabel>Thao tác</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.id)}
             >
-              Copy payment ID
+              Sao chép mã giao dịch
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/users/${payment.userId}`}>View customer</Link>
+              <Link href={`/users/${payment.userId}`}>Xem người dùng</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Xem chi tiết giao dịch</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

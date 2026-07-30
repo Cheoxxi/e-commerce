@@ -6,6 +6,7 @@ import { Minus, Plus, ShoppingCart } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { formatColor } from "@/lib/format";
 
 const ProductInteraction = ({
   product,
@@ -46,13 +47,13 @@ const ProductInteraction = ({
       selectedColor,
       selectedSize,
     });
-    toast.success("Product added to cart")
+    toast.success("Đã thêm sản phẩm vào giỏ hàng.");
   };
   return (
     <div className="flex flex-col gap-4 mt-4">
       {/* SIZE */}
       <div className="flex flex-col gap-2 text-xs">
-        <span className="text-gray-500">Size</span>
+        <span className="text-gray-500">Kích cỡ</span>
         <div className="flex items-center gap-2">
           {product.sizes.map((size) => (
             <div
@@ -77,7 +78,7 @@ const ProductInteraction = ({
       </div>
       {/* COLOR */}
       <div className="flex flex-col gap-2 text-sm">
-        <span className="text-gray-500">Color</span>
+        <span className="text-gray-500">Màu sắc</span>
         <div className="flex items-center gap-2">
           {product.colors.map((color) => (
             <div
@@ -86,6 +87,8 @@ const ProductInteraction = ({
               }`}
               key={color}
               onClick={() => handleTypeChange("color", color)}
+              title={formatColor(color)}
+              aria-label={`Chọn màu ${formatColor(color)}`}
             >
               <div className={`w-6 h-6`} style={{ backgroundColor: color }} />
             </div>
@@ -94,11 +97,12 @@ const ProductInteraction = ({
       </div>
       {/* QUANTITY */}
       <div className="flex flex-col gap-2 text-sm">
-        <span className="text-gray-500">Quantity</span>
+        <span className="text-gray-500">Số lượng</span>
         <div className="flex items-center gap-2">
           <button
             className="cursor-pointer border-1 border-gray-300 p-1"
             onClick={() => handleQuantityChange("decrement")}
+            aria-label="Giảm số lượng"
           >
             <Minus className="w-4 h-4" />
           </button>
@@ -106,6 +110,7 @@ const ProductInteraction = ({
           <button
             className="cursor-pointer border-1 border-gray-300 p-1"
             onClick={() => handleQuantityChange("increment")}
+            aria-label="Tăng số lượng"
           >
             <Plus className="w-4 h-4" />
           </button>
@@ -117,11 +122,11 @@ const ProductInteraction = ({
         className="bg-gray-800 text-white px-4 py-2 rounded-md shadow-lg flex items-center justify-center gap-2 cursor-pointer text-sm font-medium"
       >
         <Plus className="w-4 h-4" />
-        Add to Cart
+        Thêm vào giỏ
       </button>
       <button className="ring-1 ring-gray-400 shadow-lg text-gray-800 px-4 py-2 rounded-md flex items-center justify-center cursor-pointer gap-2 text-sm font-medium">
         <ShoppingCart className="w-4 h-4" />
-        Buy this Item
+        Mua ngay
       </button>
     </div>
   );

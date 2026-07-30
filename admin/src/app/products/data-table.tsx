@@ -54,7 +54,7 @@ export function DataTable<TData, TValue>({
         <div className="flex justify-end">
           <button className="flex items-center gap-2 bg-red-500 text-white px-2 py-1 text-sm rounded-md m-4 cursor-pointer">
             <Trash2 className="w-4 h-4"/>
-            Delete Product(s)
+            Xóa sản phẩm đã chọn
           </button>
         </div>
       )}
@@ -94,7 +94,7 @@ export function DataTable<TData, TValue>({
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
-                No results.
+                Không có kết quả.
               </TableCell>
             </TableRow>
           )}

@@ -79,14 +79,38 @@ const sizes = [
   "48",
 ] as const;
 
+const categoryLabels: Record<(typeof categories)[number], string> = {
+  "T-shirts": "Áo thun",
+  Shoes: "Giày",
+  Accessories: "Phụ kiện",
+  Bags: "Túi xách",
+  Dresses: "Đầm",
+  Jackets: "Áo khoác",
+  Gloves: "Găng tay",
+};
+
+const colorLabels: Record<(typeof colors)[number], string> = {
+  blue: "Xanh dương",
+  green: "Xanh lá",
+  red: "Đỏ",
+  yellow: "Vàng",
+  purple: "Tím",
+  orange: "Cam",
+  pink: "Hồng",
+  brown: "Nâu",
+  gray: "Xám",
+  black: "Đen",
+  white: "Trắng",
+};
+
 const formSchema = z.object({
-  name: z.string().min(1, { message: "Product name is required!" }),
+  name: z.string().min(1, { message: "Vui lòng nhập tên sản phẩm." }),
   shortDescription: z
     .string()
-    .min(1, { message: "Short description is required!" })
+    .min(1, { message: "Vui lòng nhập mô tả ngắn." })
     .max(60),
-  description: z.string().min(1, { message: "Description is required!" }),
-  price: z.number().min(1, { message: "Price is required!" }),
+  description: z.string().min(1, { message: "Vui lòng nhập mô tả sản phẩm." }),
+  price: z.number().min(1, { message: "Vui lòng nhập giá sản phẩm." }),
   category: z.enum(categories),
   sizes: z.array(z.enum(sizes)),
   colors: z.array(z.enum(colors)),
@@ -101,7 +125,7 @@ const AddProduct = () => {
     <SheetContent>
       <ScrollArea className="h-screen">
         <SheetHeader>
-          <SheetTitle className="mb-4">Add Product</SheetTitle>
+          <SheetTitle className="mb-4">Thêm sản phẩm</SheetTitle>
           <SheetDescription asChild>
             <Form {...form}>
               <form className="space-y-8">
@@ -110,12 +134,12 @@ const AddProduct = () => {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>Tên sản phẩm</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        Enter the name of the product.
+                        Nhập tên hiển thị của sản phẩm.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -126,12 +150,12 @@ const AddProduct = () => {
                   name="shortDescription"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Short Description</FormLabel>
+                      <FormLabel>Mô tả ngắn</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
                       <FormDescription>
-                        Enter the short description of the product.
+                        Tóm tắt đặc điểm nổi bật của sản phẩm.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -142,12 +166,12 @@ const AddProduct = () => {
                   name="description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Description</FormLabel>
+                      <FormLabel>Mô tả chi tiết</FormLabel>
                       <FormControl>
                         <Textarea {...field} />
                       </FormControl>
                       <FormDescription>
-                        Enter the description of the product.
+                        Nhập thông tin chi tiết về sản phẩm.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -158,12 +182,12 @@ const AddProduct = () => {
                   name="price"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel>Giá (VNĐ)</FormLabel>
                       <FormControl>
                         <Input type="number" {...field} />
                       </FormControl>
                       <FormDescription>
-                        Enter the price of the product.
+                        Nhập giá bán bằng VNĐ.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -174,23 +198,26 @@ const AddProduct = () => {
                   name="category"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Category</FormLabel>
+                      <FormLabel>Danh mục</FormLabel>
                       <FormControl>
-                        <Select>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
                           <SelectTrigger>
-                            <SelectValue placeholder="Select a category" />
+                            <SelectValue placeholder="Chọn danh mục" />
                           </SelectTrigger>
                           <SelectContent>
                             {categories.map((cat) => (
                               <SelectItem key={cat} value={cat}>
-                                {cat}
+                                {categoryLabels[cat]}
                               </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </FormControl>
                       <FormDescription>
-                        Enter the category of the product.
+                        Chọn danh mục phù hợp cho sản phẩm.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -201,13 +228,13 @@ const AddProduct = () => {
                   name="sizes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Sizes</FormLabel>
+                      <FormLabel>Kích cỡ</FormLabel>
                       <FormControl>
                         <div className="grid grid-cols-3 gap-4 my-2">
                           {sizes.map((size) => (
                             <div className="flex items-center gap-2" key={size}>
                               <Checkbox
-                                id="size"
+                                id={`size-${size}`}
                                 checked={field.value?.includes(size)}
                                 onCheckedChange={(checked) => {
                                   const currentValues = field.value || [];
@@ -220,15 +247,15 @@ const AddProduct = () => {
                                   }
                                 }}
                               />
-                              <label htmlFor="size" className="text-xs">
-                                {size}
+                              <label htmlFor={`size-${size}`} className="text-xs">
+                                {size.toUpperCase()}
                               </label>
                             </div>
                           ))}
                         </div>
                       </FormControl>
                       <FormDescription>
-                        Select the available sizes for the product.
+                        Chọn các kích cỡ đang có sẵn.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -239,7 +266,7 @@ const AddProduct = () => {
                   name="colors"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Colors</FormLabel>
+                      <FormLabel>Màu sắc</FormLabel>
                       <FormControl>
                         <div className="space-y-4">
                           <div className="grid grid-cols-3 gap-4 my-2">
@@ -249,7 +276,7 @@ const AddProduct = () => {
                                 key={color}
                               >
                                 <Checkbox
-                                  id="color"
+                                  id={`color-${color}`}
                                   checked={field.value?.includes(color)}
                                   onCheckedChange={(checked) => {
                                     const currentValues = field.value || [];
@@ -263,28 +290,32 @@ const AddProduct = () => {
                                   }}
                                 />
                                 <label
-                                  htmlFor="color"
+                                  htmlFor={`color-${color}`}
                                   className="text-xs flex items-center gap-2"
                                 >
                                   <div
                                     className="w-2 h-2 rounded-full"
                                     style={{ backgroundColor: color }}
                                   />
-                                  {color}
+                                  {colorLabels[color]}
                                 </label>
                               </div>
                             ))}
                           </div>
                           {field.value && field.value.length > 0 && (
                             <div className="mt-8 space-y-4">
-                              <p className="text-sm font-medium">Upload images for selected colors:</p>
+                              <p className="text-sm font-medium">
+                                Tải ảnh cho từng màu đã chọn:
+                              </p>
                               {field.value.map((color) => (
                                 <div className="flex items-center gap-2" key={color}>
                                   <div
                                     className="w-2 h-2 rounded-full"
                                     style={{ backgroundColor: color }}
                                   />
-                                  <span className="text-sm min-w-[60px]">{color}</span>
+                                  <span className="text-sm min-w-[80px]">
+                                    {colorLabels[color]}
+                                  </span>
                                   <Input type="file" accept="image/*" />
                                 </div>
                               ))}
@@ -293,13 +324,13 @@ const AddProduct = () => {
                         </div>
                       </FormControl>
                       <FormDescription>
-                        Select the available colors for the product.
+                        Chọn các màu đang có sẵn.
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit">Thêm sản phẩm</Button>
               </form>
             </Form>
           </SheetDescription>
