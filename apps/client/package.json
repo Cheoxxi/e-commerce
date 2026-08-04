@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/localizations": "^4.13.10",
     "@clerk/nextjs": "^7.6.4",
     "@hookform/resolvers": "^5.2.1",
     "lucide-react": "^0.535.0",

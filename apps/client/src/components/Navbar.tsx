@@ -3,7 +3,8 @@ import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { Bell, Home } from "lucide-react";
 import ShoppingCartIcon from "./ShoppingCartIcon";
-import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
+import { Show, SignInButton } from "@clerk/nextjs";
+import ProfileButton from "./ProfileButton";
 
 const Navbar = () => {
   return (
@@ -35,10 +36,10 @@ const Navbar = () => {
               <SignInButton />
             </Show>
             <Show when="signed-in">
-              <UserButton />
+              <ProfileButton/>
             </Show>
       </div>
-    </nav>
+    </nav>                                
   );
 };
 
