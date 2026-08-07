@@ -13,6 +13,7 @@ app.use(cors({
 })
 );
 
+app.use(express.json());    
 app.use(clerkMiddleware());
 
 app.get("/health" , (req:Request ,res:Response)=>{
@@ -30,6 +31,13 @@ app.get("/test",shouldBeUser , (req,res)=>{
 
 app.use("/products" , productRouter);
 app.use("/categories" , categoryRouter);
+
+app.use((err:any , req:Request , res:Response , next:Function)=>{
+    console.error(err);
+    return res
+    .status(err.status || 500)
+    .json({message:err.message || "Internal server error"});
+})
 
 app.listen(8000, () => {
     console.log("Product service is running on port 8000"); 
