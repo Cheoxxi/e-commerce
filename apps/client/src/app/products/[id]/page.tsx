@@ -1,29 +1,45 @@
 import ProductInteraction from "@/components/ProductInteraction";
-import { ProductType } from "@/types";
+import {ProductType } from "@repo/types";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/format";
 
 // TEMPORARY
-const product: ProductType = {
-  id: 1,
-  name: "Áo thun Adidas CoreFit",
-  shortDescription:
-    "Chất vải mềm, co giãn nhẹ và thoáng mát cho ngày năng động.",
-  description:
-    "Áo thun Adidas CoreFit có phom dáng gọn gàng, chất vải mềm và thoáng. Thiết kế dễ phối cùng quần jeans hoặc trang phục thể thao hằng ngày.",
-  price: 399000,
-  sizes: ["xs", "s", "m", "l", "xl"],
-  colors: ["gray", "purple", "green"],
-  images: {
-    gray: "/products/1g.png",
-    purple: "/products/1p.png",
-    green: "/products/1gr.png",
-  },
+// const product: ProductType = {
+//   id: 1,
+//   name: "Áo thun Adidas CoreFit",
+//   shortDescription:
+//     "Chất vải mềm, co giãn nhẹ và thoáng mát cho ngày năng động.",
+//   description:
+//     "Áo thun Adidas CoreFit có phom dáng gọn gàng, chất vải mềm và thoáng. Thiết kế dễ phối cùng quần jeans hoặc trang phục thể thao hằng ngày.",
+//   price: 399000,
+//   sizes: ["xs", "s", "m", "l", "xl"],
+//   colors: ["gray", "purple", "green"],
+//   images: {
+//     gray: "/products/1g.png",
+//     purple: "/products/1p.png",
+//     green: "/products/1gr.png",
+//   },
+//   categorySlug:"test",
+//   createdAt:new Date(),
+//   updatedAt:new Date(),
+// };
+
+const fetchProduct = async (id: string) => {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_PRODUCT_SERVICE_URL}/products/${id}`
+  );
+  const data: ProductType = await res.json();
+  return data;
 };
 
-export const generateMetadata = async () => {
-  // TODO:get the product from db
-  // TEMPORARY
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params;
+
+  const product = await fetchProduct(id);
   return {
     title: product.name,
     description: product.description,
@@ -31,11 +47,16 @@ export const generateMetadata = async () => {
 };
 
 const ProductPage = async ({
+  params ,
   searchParams,
 }: {
+  params: Promise<{id : string}>;
   searchParams: Promise<{ color: string; size: string }>;
 }) => {
   const { size, color } = await searchParams;
+  const {id} = await params ;
+
+  const product = await fetchProduct(id)
 
   const selectedSize = size || (product.sizes[0] as string);
   const selectedColor = color || (product.colors[0] as string);
@@ -44,7 +65,7 @@ const ProductPage = async ({
       {/* IMAGE */}
       <div className="w-full lg:w-5/12 relative aspect-[2/3]">
         <Image
-          src={product.images?.[selectedColor] || ""}
+          src={(product.images as Record <string, string>)?.[selectedColor] || ""}
           alt={product.name}
           fill
           className="object-contain rounded-md"

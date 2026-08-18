@@ -1,4 +1,4 @@
-import { ShippingFormInputs, shippingFormSchema } from "@/types";
+import { ShippingFormInputs, shippingFormSchema } from "@repo/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -39,6 +39,7 @@ const ShippingForm = ({
           id="name"
           placeholder="Nguyễn Minh Anh"
           {...register("name")}
+          value="Thắng"
         />
         {errors.name && (
           <p className="text-xs text-red-500">{errors.name.message}</p>
@@ -54,6 +55,7 @@ const ShippingForm = ({
           id="email"
           placeholder="johndoe@gmail.com"
           {...register("email")}
+          value="thangtran@gmail.com"
         />
         {errors.email && (
           <p className="text-xs text-red-500">{errors.email.message}</p>
@@ -69,6 +71,7 @@ const ShippingForm = ({
           id="phone"
           placeholder="0912345678"
           {...register("phone")}
+          value="0879248244"
         />
         {errors.phone && (
           <p className="text-xs text-red-500">{errors.phone.message}</p>
@@ -84,6 +87,7 @@ const ShippingForm = ({
           id="address"
           placeholder="123 Nguyễn Trãi, Phường Bến Thành"
           {...register("address")}
+          value="123 Nguyễn Trãi, Phường Bến Thành"
         />
         {errors.address && (
           <p className="text-xs text-red-500">{errors.address.message}</p>
@@ -99,6 +103,7 @@ const ShippingForm = ({
           id="city"
           placeholder="TP. Hồ Chí Minh"
           {...register("city")}
+          value="TP. Hồ Chí Minh"
         />
         {errors.city && (
           <p className="text-xs text-red-500">{errors.city.message}</p>

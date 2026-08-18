@@ -1,14 +1,15 @@
 "use client";
 
-import PaymentForm from "@/components/PaymentForm";
+
 import ShippingForm from "@/components/ShippingForm";
 import useCartStore from "@/stores/cartStore";
-import { ShippingFormInputs } from "@/types";
+import { ShippingFormInputs } from "@repo/types";
 import { ArrowRight, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { formatColor, formatCurrency } from "@/lib/format";
+import StripePaymentForm from "@/components/StripePaymentForm";
 
 const steps = [
   {
@@ -87,7 +88,7 @@ const CartPageContent = () => {
                   {/* IMAGE */}
                   <div className="relative w-32 h-32 bg-gray-50 rounded-lg overflow-hidden">
                     <Image
-                      src={item.images?.[item.selectedColor] || "" } 
+                      src={(item.images as Record<string,string>)?.[item.selectedColor] || "" } 
                       alt={item.name}
                       fill
                       className="object-contain"
@@ -108,7 +109,7 @@ const CartPageContent = () => {
                       </p>
                     </div>
                     <p className="font-medium">
-                      {formatCurrency(item.price)}
+                      {formatCurrency(item.price * item.quantity)}
                     </p>
                   </div>
                 </div>
@@ -129,7 +130,7 @@ const CartPageContent = () => {
           ) : activeStep === 2 ? (
             <ShippingForm setShippingForm={setShippingForm} />
           ) : activeStep === 3 && shippingForm ? (
-            <PaymentForm />
+            <StripePaymentForm shippingForm={shippingForm}/>
           ) : (
             <p className="text-sm text-gray-500">
               Vui lòng điền thông tin giao hàng để tiếp tục.
@@ -160,8 +161,9 @@ const CartPageContent = () => {
           </div>
           {activeStep === 1 && (
             <button
+              disabled={cart.length === 0}
               onClick={() => router.push("/cart?step=2", { scroll: false })}
-              className="w-full bg-gray-800 hover:bg-gray-900 transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2"
+              className="w-full bg-gray-800 hover:bg-gray-900 disabled:bg-gray-300 disabled:cursor-not-allowed transition-all duration-300 text-white p-2 rounded-lg cursor-pointer flex items-center justify-center gap-2"
             >
               Tiếp tục
               <ArrowRight className="w-3 h-3" />

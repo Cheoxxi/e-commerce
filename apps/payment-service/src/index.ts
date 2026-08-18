@@ -1,13 +1,19 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
-import { timeStamp } from 'node:console';
-import { uptime } from 'node:process';
-import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
-import { shouldBeUser } from './middleware/authMiddleware.js';
+import { clerkMiddleware} from '@hono/clerk-auth'
+import sessionRoute from './routes/session.route.js';
+import { cors } from "hono/cors";
+import webhookRoute from './routes/webhooks.route.js';
+import { consumer, producer } from './utils/kafka.js';
+import { runKafkaSubscriptions } from './utils/subscriptions.js';
 
 const app = new Hono();
-
-app.use('*', clerkMiddleware())
+app.use("*", cors({
+  origin: [process.env.CLIENT_URL || "http://localhost:3002"],
+  allowHeaders: ["Content-Type", "Authorization"],
+  allowMethods: ["POST", "GET", "OPTIONS"],
+}));
+app.use("*", clerkMiddleware());
 
 app.get("/health", (c) => {
   return c.json({
@@ -17,14 +23,35 @@ app.get("/health", (c) => {
   });
 });
 
-app.get("/test",shouldBeUser, (c) => {
-  return c.json({
-    message: "Payment service is Authenticated!", userId:c.get("userId")
-  });
-});
+
+app.route("/sessions", sessionRoute)
+app.route("/webhooks", webhookRoute)
+
+// app.post("/create-stripe-product", async (c) => {
+//   const res = await stripe.products.create({
+//     id: "123",
+//     name: "Test Product",
+//     default_price_data: {
+//       currency: "vnd",
+//       unit_amount: 10 * 100,
+//     },
+//   });
+
+//   return c.json(res);
+// });
+
+// app.get("/stripe-product-price", async (c) => {
+//   const res = await stripe.prices.list({
+//     product: "123",
+//   });
+
+//   return c.json(res);
+// });
 
 const start = async () => {
  try {
+    Promise.all([await producer.connect(), await consumer.connect()]);  
+    await runKafkaSubscriptions()
     serve(
       {
     fetch: app.fetch,
