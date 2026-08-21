@@ -25,7 +25,7 @@ importers:
         version: 7.6.4(next@15.3.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@hookform/resolvers':
         specifier: ^5.0.1
-        version: 5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.21.0)(react-hook-form@7.84.0(react@19.2.0))(zod@3.25.76)
+        version: 5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.21.0)(react-hook-form@7.85.0(react@19.2.0))(zod@4.4.3)
       '@radix-ui/react-avatar':
         specifier: ^1.1.4
         version: 1.2.6(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -68,6 +68,9 @@ importers:
       '@radix-ui/react-tooltip':
         specifier: ^1.2.0
         version: 1.2.16(@types/react-dom@19.2.2(@types/react@19.2.2))(@types/react@19.2.2)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tanstack/react-query':
+        specifier: ^5.101.4
+        version: 5.101.4(react@19.2.0)
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -99,8 +102,11 @@ importers:
         specifier: ^19.0.0
         version: 19.2.0(react@19.2.0)
       react-hook-form:
-        specifier: ^7.55.0
-        version: 7.84.0(react@19.2.0)
+        specifier: ^7.85.0
+        version: 7.85.0(react@19.2.0)
+      react-toastify:
+        specifier: ^11.0.5
+        version: 11.1.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       recharts:
         specifier: ^2.15.2
         version: 2.15.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -111,8 +117,8 @@ importers:
         specifier: ^1.2.5
         version: 1.4.0
       zod:
-        specifier: ^3.24.2
-        version: 3.25.76
+        specifier: ^4.4.3
+        version: 4.4.3
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*
@@ -251,6 +257,9 @@ importers:
       '@repo/order-db':
         specifier: workspace:*
         version: link:../../packages/order-db
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.4.0
       fastify:
         specifier: ^5.5.0
         version: 5.11.0
@@ -1717,6 +1726,11 @@ packages:
 
   '@tanstack/query-core@5.101.4':
     resolution: {integrity: sha512-gNwcvOJcRbLWPOLG/2OBm+zM+Yv+MKsXKEOWC57USuZDEsI71hEErQsiEGx5wX9rzWWkfwM0fVSPoiIFSsxfiw==}
+
+  '@tanstack/react-query@5.101.4':
+    resolution: {integrity: sha512-yRg2pfOCxIs4ZJW3XYYHU/WgtD04FHSnfHlpRT7h7pR77hwkdRG4wxbKe4aq6P0RvXUTBSQpQeadS1SUYUe+KA==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tanstack/react-table@8.21.3':
     resolution: {integrity: sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==}
@@ -3372,6 +3386,12 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
 
+  react-hook-form@7.85.0:
+    resolution: {integrity: sha512-U2MTriFXnclmV4rOE20p2DcRFv5WEg3FIcBFOKcOLFHDVvGIMPvLTkTWefUsonmlaVy23khVDxDWym6uJVGOzw==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -3884,9 +3904,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
-
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
@@ -4237,16 +4254,16 @@ snapshots:
       effect: 3.21.0
       zod: 4.4.3
 
-  '@hookform/resolvers@5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.21.0)(react-hook-form@7.84.0(react@19.2.0))(zod@3.25.76)':
+  '@hookform/resolvers@5.7.1(@standard-schema/spec@1.1.0)(ajv-formats@3.0.1(ajv@8.20.0))(ajv@8.20.0)(effect@3.21.0)(react-hook-form@7.85.0(react@19.2.0))(zod@4.4.3)':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.84.0(react@19.2.0)
+      react-hook-form: 7.85.0(react@19.2.0)
     optionalDependencies:
       '@standard-schema/spec': 1.1.0
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       effect: 3.21.0
-      zod: 3.25.76
+      zod: 4.4.3
 
   '@humanfs/core@0.19.1': {}
 
@@ -5037,6 +5054,11 @@ snapshots:
       tailwindcss: 4.3.3
 
   '@tanstack/query-core@5.101.4': {}
+
+  '@tanstack/react-query@5.101.4(react@19.2.0)':
+    dependencies:
+      '@tanstack/query-core': 5.101.4
+      react: 19.2.0
 
   '@tanstack/react-table@8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
@@ -6804,7 +6826,7 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  react-hook-form@7.84.0(react@19.2.0):
+  react-hook-form@7.85.0(react@19.2.0):
     dependencies:
       react: 19.2.0
 
@@ -6852,6 +6874,12 @@ snapshots:
       clsx: 2.1.1
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
+
+  react-toastify@11.1.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      clsx: 2.1.1
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   react-transition-group@4.4.5(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
@@ -7462,8 +7490,6 @@ snapshots:
   wrappy@1.0.2: {}
 
   yocto-queue@0.1.0: {}
-
-  zod@3.25.76: {}
 
   zod@4.4.3: {}
 

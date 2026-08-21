@@ -1,6 +1,8 @@
 "use client";
 import { ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart";
 import { formatCurrency } from "@/lib/utils";
+import { OrderChartType } from "@repo/types";
+import { use } from "react";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
 const chartConfig = {
@@ -14,16 +16,23 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const chartData = [
-  { month: "Tháng 1", total: 186000000, successful: 80000000 },
-  { month: "Tháng 2", total: 305000000, successful: 200000000 },
-  { month: "Tháng 3", total: 237000000, successful: 120000000 },
-  { month: "Tháng 4", total: 173000000, successful: 100000000 },
-  { month: "Tháng 5", total: 209000000, successful: 130000000 },
-  { month: "Tháng 6", total: 214000000, successful: 140000000 },
-];
+// const chartData = [
+//   { month: "Tháng 1", total: 186000000, successful: 80000000 },
+//   { month: "Tháng 2", total: 305000000, successful: 200000000 },
+//   { month: "Tháng 3", total: 237000000, successful: 120000000 },
+//   { month: "Tháng 4", total: 173000000, successful: 100000000 },
+//   { month: "Tháng 5", total: 209000000, successful: 130000000 },
+//   { month: "Tháng 6", total: 214000000, successful: 140000000 },
+// ];
 
-const AppBarChart = () => {
+const AppBarChart = ({
+  dataPromise
+}:{
+  dataPromise:Promise<OrderChartType[]>
+
+}) => {
+
+  const chartData = use (dataPromise)
   return (
     <div className="">
       <h1 className="text-lg font-medium mb-6">Tổng doanh thu</h1>
@@ -41,7 +50,11 @@ const AppBarChart = () => {
             tickLine={false}
             tickMargin={10}
             axisLine={false}
-            tickFormatter={(value) => `${value / 1000000}tr`}
+            tickFormatter={(value) => {
+              if (value >= 1000000) return `${(value / 1000000).toLocaleString("vi-VN")} tr`;
+              if (value >= 1000) return `${(value / 1000).toLocaleString("vi-VN")} k`;
+              return `${value.toLocaleString("vi-VN")} đ`;
+            }}
           />
           <ChartTooltip
             content={

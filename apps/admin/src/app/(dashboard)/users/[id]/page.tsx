@@ -18,8 +18,38 @@ import { Button } from "@/components/ui/button";
 import EditUser from "@/components/EditUser";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AppLineChart from "@/components/AppLineChart";
+import { auth, User } from "@clerk/nextjs/server";
 
-const SingleUserPage = () => {
+
+const getData = async (id:string): Promise<User | null> => {
+  const { getToken } = await auth();
+  const token = await getToken();
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_AUTH_SERVICE_URL}/users/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    return null
+  }
+};
+
+const SingleUserPage = async ({params}:{params:Promise<{id: string}>
+})  => {
+  const {id} = await params;
+  const data = await getData(id)
+
+  if(!data){
+     return <div className="">Không tìm thấy người dùng!!</div>
+  }
+  
   return (
     <div className="">
       <Breadcrumb>
@@ -33,7 +63,7 @@ const SingleUserPage = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Nguyễn Minh Anh</BreadcrumbPage>
+            <BreadcrumbPage>{(data?.firstName + " " +data?.lastName) || data?.username || "-"}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -107,10 +137,10 @@ const SingleUserPage = () => {
           <div className="bg-primary-foreground p-4 rounded-lg space-y-2">
             <div className="flex items-center gap-2">
               <Avatar className="size-12">
-                <AvatarImage src="https://avatars.githubusercontent.com/u/1486366" />
-                <AvatarFallback>MA</AvatarFallback>
+                <AvatarImage src={data.imageUrl}/>
+                <AvatarFallback>{data?.firstName?.charAt(0) || data?.username?.charAt(0)  || "-"}</AvatarFallback>
               </Avatar>
-              <h1 className="text-xl font-semibold">Nguyễn Minh Anh</h1>
+              <h1 className="text-xl font-semibold">{(data?.firstName + " " +data?.lastName) || data?.username || "-"}</h1>
             </div>
             <p className="text-sm text-muted-foreground">
               Khách hàng thân thiết của SyStore, thường xuyên mua sắm các sản
@@ -137,27 +167,27 @@ const SingleUserPage = () => {
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-bold">Họ và tên:</span>
-                <span>Nguyễn Minh Anh</span>
+                <span>{(data?.firstName + " " +data?.lastName) || data?.username || "-"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-bold">Email:</span>
-                <span>minhanh@example.com</span>
+                <span>{data.emailAddresses[0]?.emailAddress || "-"}</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-bold">Số điện thoại:</span>
-                <span>0912345678</span>
+                <span>{data.phoneNumbers[0]?.phoneNumber || "-"}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">Địa chỉ:</span>
-                <span>123 Nguyễn Trãi, Phường Bến Thành</span>
+                <span className="font-bold">Vai Trò:</span>
+                <span>{String(data.publicMetadata?.role) || "user"}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold">Tỉnh / Thành phố:</span>
-                <span>TP. Hồ Chí Minh</span>
+                <span className="font-bold">Trạng Thái:</span>
+                <span>{data.banned ? "Đã bị cấm" : "Hoạt Động"}</span>
               </div>
             </div>
             <p className="text-sm text-muted-foreground mt-4">
-              Tham gia ngày 01/01/2025
+              Tham gia vào {new Date(data.createdAt).toLocaleDateString("vi-VN",)}
             </p>
           </div>
         </div>
